@@ -5,11 +5,11 @@ class TreeNode extends BaseNode {
     constructor(option){
         option = { ...option };
         super(option);
-        let { childNodes, ItemConstructor } = option;
+        let { childNodes, ItemConstructor, document } = option;
         if(childNodes instanceof NodeList){
             childNodes = childNodes.clone();
         } else {
-            childNodes = new NodeList({ ItemConstructor });
+            childNodes = new NodeList({ ItemConstructor, document });
         }
         this.childNodes = childNodes;
     }

@@ -5,11 +5,11 @@ class NamedTreeNode extends NamedNode {
     constructor(option){
         option = { ...option };
         super(option);
-        let { childNodes, ItemConstructor } = option;
+        let { childNodes, ItemConstructor, document } = option;
         if(childNodes instanceof NodeList){
             childNodes = childNodes.clone();
         } else {
-            childNodes = new NodeList({ ItemConstructor });
+            childNodes = new NodeList({ ItemConstructor, document });
         }
         this.childNodes = childNodes;
     }
@@ -22,6 +22,3 @@ class NamedTreeNode extends NamedNode {
 }
 
 module.exports = NamedTreeNode;
-
-// let n = new NamedTreeNode({ ItemConstructor: NamedNode });
-// console.log(n);

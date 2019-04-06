@@ -11,9 +11,14 @@ class NodeList extends TypedList {
     }
 
     toString(){
+        let { format = false } = this.document || {};
+        let joiner = '';
+        if(format){
+            joiner = '\n';
+        }
         return this.list.map(item => {
-            return `${item}`;
-        }).join('\n');
+            return `${item.toString()}`;
+        }).join(joiner);
     }
 };
 

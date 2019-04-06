@@ -4,9 +4,12 @@ let ID = 0;
  * 节点基类抽象
  */
 class BaseNode {
-    constructor({ parent }){
+    constructor(option){
+        option = { ...option };
+        let { parent, document } = option;
         this.id = ++ID;
         this.parent = parent;
+        this.document = document;
     }
 
     get depth(){
