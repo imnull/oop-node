@@ -1,40 +1,23 @@
 const { resolveNS, invalidValue } = require('./utils');
-const { NamedNode, NamedTreeNode } = require('../node');
-const AttributeList = require('./attribute-list');
+const ElementBase = require('./element-base');
+const NodeList = require('../list/node-list');
 
-class Element extends NamedTreeNode {
+class Element extends ElementBase {
     constructor(option = {}){
-        option = { ...option, type: 1, ItemConstructor: NamedNode };
+        option = { ...option, type: 1 };
         super(option);
-        let { name, namespace, document, attributes } = option;
+        let { name, namespace, document } = option;
         this.name = name;
         this.namespace = namespace;
         this.document = document;
 
-        if(!(attributes instanceof AttributeList)){
-            attributes = new AttributeList();
+        let { childNodes, ItemConstructor } = option;
+        if(childNodes instanceof NodeList){
+            childNodes = childNodes.clone();
         } else {
-            attributes = attributes.clone();
+            childNodes = new NodeList({ ItemConstructor: ElementBase, parent: this });
         }
-        this.attributes = attributes;
-    }
-
-    setAttribute(name, value){
-        let a = this.attributes.findByName(name);
-        if(a){
-            a.value = value;
-        } else {
-            this.attributes.add({
-                name, value, type: 2,
-                parent: this, document: this.document
-            });
-        }
-        return this;
-    }
-
-    getAttribute(name){
-        let a = this.attributes.findByName(name);
-        return a ? a.value : null;
+        this.childNodes = childNodes;
     }
 
     toString(){
@@ -42,31 +25,31 @@ class Element extends NamedTreeNode {
         if(invalidValue(name)){
             return '';
         }
-
-        namespace = namespace || document.namespace;
-        name = resolveNS(name, namespace);
-        let attrs = '';
-        if(this.attributes.length > 0){
-            attrs = ` ${this.attributes}`
-        }
-
-        let { indent = '  ', format = false } = this.document || {};
-        let s = `${name}${attrs}`;
-        if(format){
-            let prefix = indent.repeat(this.depth);
-            if(this.childNodes.length < 1){
-                s = `${prefix}<${s}/>`;
-            } else {
-                s = `${prefix}<${s}>\n${this.childNodes.toString()}\n${prefix}</${name}>`
-            }
+        
+        let { format = false } = this.document || {};
+        if(this.childNodes.length < 1){
+            return super.toString();
         } else {
-            if(this.childNodes.length < 1){
-                s = `<${s}/>`;
+            name = resolveNS(name, namespace || document.namespace);
+            let attrs = '';
+
+            if(this.attributes.length > 0){
+                attrs = ` ${this.attributes}`
+            }
+            let s = `${name}${attrs}`;
+
+            let prefix = this.getFormatPrefix();
+
+            if(format){
+                return `${prefix}<${s}>\n${this.childNodes.toString()}\n${prefix}</${name}>`
             } else {
-                s = `<${s}>${this.childNodes.toString()}</${name}>`
+                return `<${s}>${this.childNodes.toString()}</${name}>`
             }
         }
-        return s;
+    }
+
+    appendChild(node){
+        return this.childNodes.append(node);
     }
 };
 

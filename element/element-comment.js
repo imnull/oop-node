@@ -1,7 +1,7 @@
-const NamedNode = require('../node/named-node');
 const { invalidValue } = require('./utils');
+const ElementBase = require('./element-base');
 
-class ElementComment extends NamedNode {
+class ElementComment extends ElementBase {
     constructor(option){
         option = { ...option, type: 8, name: '#comment' };
         super(option);
@@ -14,12 +14,7 @@ class ElementComment extends NamedNode {
         if(invalidValue(this.value)){
             value = '';
         }
-        let { indent = '  ', format = false } = this.document || {};
-        let prefix = '';
-        if(format){
-            prefix = indent.replace(this.depth);
-        }
-        return `${prefix}<!-- ${value.toString()} -->`;
+        return `${this.getFormatPrefix()}<!-- ${value.toString()} -->`;
     }
 }
 
