@@ -49,7 +49,7 @@ class Element extends NamedTreeNode {
         if(this.attributes.length > 0){
             attrs = ` ${this.attributes}`
         }
-        let prefix = '\t'.repeat(this.depth);
+        let prefix = '  '.repeat(this.depth);
         let s = `${name}${attrs}`;
         if(this.childNodes.length < 1){
             s = `${prefix}<${s}/>`;
