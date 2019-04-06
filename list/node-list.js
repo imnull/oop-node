@@ -2,6 +2,27 @@ const TypedList = require('./typed-list');
 const BaseNode = require('../node/base-node');
 
 class NodeList extends TypedList {
+
+    constructor(option){
+        option = { ...option };
+        super(option);
+        let { parent } = option;
+        this.parent = parent;
+    }
+
+    append(item){
+        item = super.append(item);
+        item.parent = this.parent;
+        return item;
+    }
+
+    add(option, ...args){
+        let { parent } = this;
+        option = { ...option, parent };
+        return super.add(option, ...args);
+
+    }
+
     checkItem(item){
         return super.checkItem(item) && item instanceof BaseNode;
     }
@@ -11,7 +32,7 @@ class NodeList extends TypedList {
     }
 
     toString(){
-        let { format = false } = this.document || {};
+        let { format = false } = this.parent.document || {};
         let joiner = '';
         if(format){
             joiner = '\n';
