@@ -13,14 +13,13 @@ npm i oop-node
 BaseNode
     - NamedNode
         - Attribute
-        - ElementComment
-        - ElementText
-        - Document
-        - NamedTreeNode<T>
-            + NodeList<T>
+        - ElementBase
+            + AttributeList :: attributes
+            - ElementComment
+            - ElementText
             - Element
-                + AttributeList :: attributes
-                + NodeList<NamedNode> :: childNodes
+                + NodeList<ElementBase>
+        - Document
     - TreeNode
 BaseList
     - TypedList<T>

@@ -1,0 +1,24 @@
+{
+  "name": "oop-node",
+  "version": "1.0.5",
+  "description": "An element-struct based OOP",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/imnull/oop-node.git"
+  },
+  "keywords": [
+    "element",
+    "oop",
+    "javascript"
+  ],
+  "author": "imnull@outlook.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/imnull/oop-node/issues"
+  },
+  "homepage": "https://github.com/imnull/oop-node#readme"
+}
