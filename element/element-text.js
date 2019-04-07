@@ -1,7 +1,7 @@
-const ElementBase = require('./element-base');
+const ElementAbstract = require('./element-abstract');
 const { invalidValue } = require('./utils');
 
-class ElementText extends ElementBase {
+class ElementText extends ElementAbstract {
     constructor(option){
         option = { ...option, type: 3, name: '#text' };
         super(option);
@@ -9,11 +9,11 @@ class ElementText extends ElementBase {
         this.value = value;
     }
 
-    toString(){
+    getContentString(){
         if(invalidValue(this.value)){
             return '';
         }
-        return this.getFormatPrefix() + this.value.toString();
+        return this.value.toString();
     }
 }
 

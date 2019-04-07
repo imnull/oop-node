@@ -1,7 +1,7 @@
 const { invalidValue } = require('./utils');
-const ElementBase = require('./element-base');
+const ElementAbstract = require('./element-abstract');
 
-class ElementComment extends ElementBase {
+class ElementComment extends ElementAbstract {
     constructor(option){
         option = { ...option, type: 8, name: '#comment' };
         super(option);

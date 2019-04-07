@@ -13,17 +13,19 @@ npm i oop-node
 BaseNode
     - NamedNode
         - Attribute
-        - ElementBase
-            + AttributeList :: attributes
-            - ElementComment
-            - ElementText
-            - Element
-                + NodeList<ElementBase>
+        - ElementAbstract
+            - ElementBase
+                + AttributeList :: attributes
+                - ElementComment
+                - ElementText
+                - Element
+                    + NodeList<ElementAbstract> :: childNodes
         - Document
+            + NodeList<ElementAbstract> :: childNodes
     - TreeNode
 BaseList
     - TypedList<T>
-        - NodeList<BaseNode>
+        - NodeList<T>
             - AttributeList<Attribute>
 ```
 
@@ -34,12 +36,14 @@ BaseList
 const { Document } = require('oop-element');
 
 let document = new Document();
-let div = document.createElement('view');
+let div = doc.appendChild(doc.createElement('view'));
 div.setAttribute('class', 'user-name').setAttribute('date', '2019-04-07');
-div.appendChild(document.createComment('User Name'));
-div.appendChild(document.createText('Marvin'));
-div.appendChild(document.createComment('User Name End'));
-console.log(div.toString());
+div.appendChild(doc.createComment('User Name'));
+div.appendChild(doc.createElement('h1')).appendChild(doc.createText('Hello~'));
+div.appendChild(doc.createText('Marvin'));
+div.appendChild(doc.createElement('image')).setAttribute('src', 'http://asdfsadfsa.asfdfa.com');
+div.appendChild(doc.createComment('User Name End'));
+console.log(doc.toString());
 ```
 
 ### 输出

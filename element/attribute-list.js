@@ -1,8 +1,8 @@
-const { NodeList } = require('../list');
+const NodeList = require('./node-list');
 const Attribute = require('./attribute');
 
 class AttributeList extends NodeList {
-    constructor(option){ super({ ...option, ItemConstructor: Attribute }) }
+    constructor(option){ super({ ...option, T: Attribute }) }
 
     toString(){
         if(this.length < 1){

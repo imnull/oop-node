@@ -3,9 +3,8 @@
  */
 class BaseList {
     constructor(option = {}){
-        let { list = [], document = null } = { ...option };
+        let { list = [] } = { ...option };
         this.list = this.cloneList(list);
-        this.document = document;
     }
 
     /**

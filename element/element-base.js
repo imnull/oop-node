@@ -1,31 +1,18 @@
-const { resolveNS, invalidValue } = require('./utils');
-const NamedNode = require('../node/named-node');
+const ElementAbstract = require('./element-abstract');
 const AttributeList = require('./attribute-list');
 
-class ElementBase extends NamedNode {
+class ElementBase extends ElementAbstract {
     constructor(option){
         option = { ...option };
         super(option);
-        let { parent, document, attributes } = option;
-        this.parent = parent;
-        this.document = document;
 
+        let { attributes } = option;
         if(!(attributes instanceof AttributeList)){
-            attributes = new AttributeList({ parent: this });
+            attributes = new AttributeList({ parent: this, document: this.document });
         } else {
             attributes = attributes.clone();
         }
         this.attributes = attributes;
-    }
-
-    getFormatPrefix(){
-        let { name, namespace, document } = this;
-        let { indent = '  ', format = false } = document;
-        if(format){
-            return indent.repeat(this.depth);
-        } else {
-            return '';
-        }
     }
     
     setAttribute(name, value){
@@ -45,20 +32,12 @@ class ElementBase extends NamedNode {
         return a ? a.value : null;
     }
 
-    toString(){
-        let { name, namespace, document } = this;
-        if(invalidValue(name)){
-            return '';
-        }
-
-        namespace = namespace || document.namespace;
-        name = resolveNS(name, namespace);
-        let attrs = '';
+    getContentString(){
+        let name = super.getContentString();
         if(this.attributes.length > 0){
-            attrs = ` ${this.attributes}`
+            name = `${name} ${this.attributes.toString()}`;
         }
-        let prefix = this.getFormatPrefix();
-        return `${prefix}<${name}${attrs}/>`;
+        return name;
     }
 };
 
