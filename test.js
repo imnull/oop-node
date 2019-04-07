@@ -1,4 +1,4 @@
-const Document = require('./element/document');
+const { Document } = require('./dist/main');
 
 // let document = new Document();
 let doc = new Document({
