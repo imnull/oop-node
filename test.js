@@ -1,15 +1,16 @@
 const Document = require('./element/document');
 
 // let document = new Document();
-let document = new Document({
+let doc = new Document({
     format: true,   // 带格式
     indent: '    ', // 缩进字符串（默认2空格）
 });
-let div = document.createElement('view');
+let div = doc.appendChild(doc.createElement('view'));
 div.setAttribute('class', 'user-name').setAttribute('date', '2019-04-07');
-div.appendChild(document.createComment('User Name'));
-div.appendChild(document.createElement('h1')).appendChild(document.createText('Hello~'));
-div.appendChild(document.createText('Marvin'));
-div.appendChild(document.createElement('image')).setAttribute('src', 'http://asdfsadfsa.asfdfa.com');
-div.appendChild(document.createComment('User Name End'));
-console.log(div.toString());
+div.appendChild(doc.createComment('User Name'));
+div.appendChild(doc.createElement('h1')).appendChild(doc.createText('Hello~'));
+div.appendChild(doc.createText('Marvin'));
+div.appendChild(doc.createElement('image')).setAttribute('src', 'http://asdfsadfsa.asfdfa.com');
+div.appendChild(doc.createComment('User Name End'));
+// console.log(div.toString());
+console.log(doc.toString());
