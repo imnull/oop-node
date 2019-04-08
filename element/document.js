@@ -12,13 +12,7 @@ class Document extends NamedNode {
         option = { ...option, type: 9, name: '#document' };
         super(option);
 
-        let { childNodes } = option;
-        if(childNodes instanceof NodeList){
-            childNodes = childNodes.clone();
-        } else {
-            childNodes = new NodeList({ T: ElementAbstract, parent: null, document: this });
-        }
-        this.childNodes = childNodes;
+        this.root = new Element({ document: this, parent: null, name: 'root', type: 100 })
 
         let { format = false, indent = '  ' } = option;
         this.format = format;
@@ -26,7 +20,7 @@ class Document extends NamedNode {
     }
 
     appendChild(node){
-        return this.childNodes.append(node);
+        return this.root.appendChild(node);
     }
 
     createElement(name){
@@ -47,7 +41,7 @@ class Document extends NamedNode {
     }
 
     toString(){
-        return this.childNodes.toString();
+        return this.root.childNodes.toString(-1);
     }
 }
 
