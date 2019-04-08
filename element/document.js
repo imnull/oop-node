@@ -44,6 +44,10 @@ class Document extends NamedNode {
         return this.root.childNodes.toString(-1);
     }
 
+    each(...args){
+        this.root.each(...args);
+    }
+
     query(...args){
         return this.root.childNodes.query(...args);
     }
