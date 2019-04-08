@@ -15,4 +15,6 @@ div.appendChild(doc.createComment('User Name End'));
 // console.log(div.toString());
 console.log(doc.toString());
 
-console.log(doc.queryAll(n => n.type === 8).map(n => n.toString()).join('\n'))
+console.log(doc.queryAll(n => n.type === 8).map(n => n.toString()).join('\n'));
+
+doc.each(n => console.log(n.type, n.name), 2);
