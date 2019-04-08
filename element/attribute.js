@@ -3,10 +3,11 @@ const { resolveNS, invalidValue } = require('./utils');
 
 class Attribute extends NamedNode {
     constructor(option = {}){
-        option = { ...option, type: 2 };
+        option = { ...option };
         super(option);
-        let { value } = option;
+        let { value, type = 2 } = option;
         this.value = value;
+        this.type = type;
     }
 
     toString(){
