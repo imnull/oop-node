@@ -33,6 +33,20 @@ class Element extends ElementBase {
         }
     }
 
+    each(fn, deeply = 0){
+        this.childNodes.each((n, i, p) => {
+            fn(n, i, p);
+            if(deeply > 0 && n instanceof ElementBase){
+                if(deeply > 1){
+                    n.attributes.each((...args) => fn(...args));
+                }
+                if(n instanceof Element){
+                    n.each(fn, deeply);
+                }
+            }
+        })
+    }
+
     appendChild(node){
         return this.childNodes.append(node);
     }
