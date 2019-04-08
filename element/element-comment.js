@@ -9,12 +9,12 @@ class ElementComment extends ElementAbstract {
         this.value = value;
     }
 
-    toString(){
+    toString(depthOffset = 0){
         let { value } = this;
         if(invalidValue(this.value)){
             value = '';
         }
-        return `${this.getFormatPrefix()}<!-- ${value.toString()} -->`;
+        return `${this.getFormatPrefix(depthOffset)}<!-- ${value.toString()} -->`;
     }
 }
 

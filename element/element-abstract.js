@@ -20,22 +20,22 @@ class ElementAbstract extends NamedNode {
         return name;
     }
 
-    getFormatPrefix(){
+    getFormatPrefix(depthOffset = 0){
         let { document } = this;
         let { indent = '  ', format = false } = document;
         if(format){
-            return indent.repeat(this.depth);
+            return indent.repeat(this.depth + depthOffset);
         } else {
             return '';
         }
     }
 
-    toString(){
-        let content = this.getContentString();
+    toString(depthOffset = 0){
+        let content = this.getContentString(depthOffset);
         if(!content){
             return '';
         }
-        return `${this.getFormatPrefix()}<${content}/>`;
+        return `${this.getFormatPrefix(depthOffset)}<${content}/>`;
     }
 }
 

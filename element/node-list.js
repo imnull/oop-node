@@ -36,14 +36,14 @@ class NodeList extends TypedList {
         return list.map(item => item.clone());
     }
 
-    toString(){
+    toString(depthOffset = 0){
         let { format = false } = this.document || {};
         let joiner = '';
         if(format){
             joiner = '\n';
         }
         return this.list.map(item => {
-            return `${item.toString()}`;
+            return item.toString(depthOffset);
         }).join(joiner);
     }
 };

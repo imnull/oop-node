@@ -16,15 +16,15 @@ class Element extends ElementBase {
         this.childNodes = childNodes;
     }
 
-    toString(){
+    toString(depthOffset = 0){
         if(this.childNodes.length < 1){
-            return super.toString();
+            return super.toString(depthOffset);
         } else {
             let { format = false } = this.document || {};
             let { name } = this;
             let tag = this.getContentString();
-            let prefix = this.getFormatPrefix();
-            let children = this.childNodes.toString();
+            let prefix = this.getFormatPrefix(depthOffset);
+            let children = this.childNodes.toString(depthOffset);
             if(format){
                 return `${prefix}<${tag}>\n${children}\n${prefix}</${name}>`
             } else {
