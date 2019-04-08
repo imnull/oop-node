@@ -43,6 +43,13 @@ class Document extends NamedNode {
     toString(){
         return this.root.childNodes.toString(-1);
     }
+
+    query(...args){
+        return this.root.childNodes.query(...args);
+    }
+    queryAll(...args){
+        return this.root.childNodes.queryAll(...args);
+    }
 }
 
 module.exports = Document;

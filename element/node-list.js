@@ -46,6 +46,34 @@ class NodeList extends TypedList {
             return item.toString(depthOffset);
         }).join(joiner);
     }
+
+    query(fn){
+        let node = null;
+        this.each(n => {
+            if(fn(n)){
+                node = n;
+                return true;
+            } else if(n.childNodes instanceof NodeList) {
+                node = n.childNodes.query(fn);
+                if(node){
+                    return true;
+                }
+            }
+        });
+        return node;
+    }
+
+    queryAll(fn, r = []){
+        this.each(n => {
+            if(fn(n)){
+                r.push(n);
+            }
+            if(n.childNodes instanceof NodeList){
+                n.childNodes.queryAll(fn, r)
+            }
+        });
+        return r;
+    }
 };
 
 module.exports = NodeList;
