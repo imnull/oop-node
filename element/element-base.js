@@ -20,9 +20,7 @@ class ElementBase extends ElementAbstract {
         if(a){
             a.value = value;
         } else {
-            this.attributes.add({
-                name, value
-            });
+            this.attributes.add(name, value);
         }
         return this;
     }
@@ -32,10 +30,10 @@ class ElementBase extends ElementAbstract {
         return a ? a.value : null;
     }
 
-    getContentString(){
-        let name = super.getContentString();
+    getContentString(option){
+        let name = super.getContentString(option);
         if(this.attributes.length > 0){
-            name = `${name} ${this.attributes.toString()}`;
+            name = `${name} ${this.attributes.toString(option)}`;
         }
         return name;
     }

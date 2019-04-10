@@ -2,21 +2,13 @@ const { resolveNS, invalidValue } = require('./utils');
 const NamedNode = require('../node/named-node');
 
 class ElementAbstract extends NamedNode {
-    constructor(option){
-        option = { ...option };
-        super(option);
-        let { parent, document } = option;
-        this.parent = parent;
-        this.document = document;
-    }
 
-    getContentString(){
-        let { name, namespace, document } = this;
+    getContentString(option){
+        let { name } = this;
         if(invalidValue(name)){
             return '';
         }
-        namespace = namespace || document.namespace;
-        name = resolveNS(name, namespace);
+        name = resolveNS(this, option);
         return name;
     }
 
@@ -30,8 +22,8 @@ class ElementAbstract extends NamedNode {
         }
     }
 
-    toString(depthOffset = 0){
-        let content = this.getContentString(depthOffset);
+    toString(depthOffset = 0, option){
+        let content = this.getContentString(option);
         if(!content){
             return '';
         }

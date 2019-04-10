@@ -8,13 +8,14 @@ class Attribute extends NamedNode {
         let { value, type = 2 } = option;
         this.value = value;
         this.type = type;
+
     }
 
-    toString(){
-        let { name, value, parent, namespace } = this;
+    toString(option){
+        let { name, value } = this;
+        option = { ...option };
         if(!invalidValue(name)){
-            namespace = namespace || parent.namespace;
-            name = resolveNS(name, namespace);
+            name = resolveNS(this, option);
             if(!invalidValue(value)){
                 return `${name}=${JSON.stringify(value)}`;
             } else {

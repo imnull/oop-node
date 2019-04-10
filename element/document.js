@@ -15,8 +15,7 @@ class Document extends NamedNode {
         this.root = new Element({ document: this, parent: null, name: 'root', type: 100 })
 
         let { format = false, indent = '  ' } = option;
-        this.format = format;
-        this.indent = indent;
+        Object.assign(this, { ...option, format, indent });
     }
 
     appendChild(node){
@@ -40,8 +39,8 @@ class Document extends NamedNode {
         return new Attribute({ document: this, name, value });
     }
 
-    toString(){
-        return this.root.childNodes.toString(-1);
+    toString(option){
+        return this.root.childNodes.toString(-1, option);
     }
 
     each(...args){

@@ -25,25 +25,19 @@ class NodeList extends TypedList {
         throw err;
     }
 
-    add(option, ...args){
-        let { parent, document } = this;
-        option = { ...option, parent, document };
-        return super.add(option, ...args);
-
-    }
-
     cloneList(list){
         return list.map(item => item.clone());
     }
 
-    toString(depthOffset = 0){
+    toString(depthOffset = 0, option){
         let { format = false } = this.document || {};
         let joiner = '';
         if(format){
             joiner = '\n';
         }
+        option = { ...option };
         return this.list.map(item => {
-            return item.toString(depthOffset);
+            return item.toString(depthOffset, option);
         }).join(joiner);
     }
 
