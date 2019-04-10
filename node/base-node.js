@@ -9,7 +9,10 @@ class BaseNode {
         let { parent, document } = option;
         this.id = ++ID;
         this.parent = parent;
-        this.document = document;
+
+        Object.defineProperties(this, {
+            document: { get: () => option.document }
+        })
     }
 
     get depth(){
