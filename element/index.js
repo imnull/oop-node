@@ -7,8 +7,10 @@ const ElementBase = require('./element-base');
 const ElementComment = require('./element-comment');
 const ElementText = require('./element-text');
 const Element = require('./element');
+const elementUtiles = require('./utils');
 
 module.exports = {
+    elementUtiles,
     NodeList,
     Attribute, AttributeList,
     ElementAbstract, ElementBase, ElementComment, ElementText, Element,
