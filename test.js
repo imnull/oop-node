@@ -7,6 +7,7 @@ let doc = new Document({
     NSGlobal: 'wx',
     NSSpliter: ':'
 });
+doc.appendChild(doc.createText('abcdefghijklmn~~~...!!!'));
 let div = doc.appendChild(doc.createElement('view'));
 div.setAttribute('class', 'user-name').setAttribute('date', '2019-04-07').setAttribute('wx:if', '2 < 1');
 div.appendChild(doc.createComment('User Name'));
@@ -17,11 +18,6 @@ div.appendChild(doc.createComment('User Name End'));
 // // console.log(div.toString());
 console.log(doc.toString({
     NSGlobal: 's',
-    NSSpliter: '-'
+    NSSpliter: '-',
+    // elementAlone: true,
 }));
-
-// console.log(div.attributes.list)
-
-// console.log(doc.queryAll(n => n.type === 8).map(n => n.toString()).join('\n'));
-
-// doc.each(n => console.log(n.type, n.name), 2);
