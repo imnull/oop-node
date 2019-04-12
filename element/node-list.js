@@ -11,17 +11,13 @@ class NodeList extends TypedList {
         this.document = document;
     }
 
-    append(item){
-        if(item instanceof BaseNode){
-            if(item.document === this.document){
-                item = super.append(item);
-                item.parent = this.parent;
-                return item;
-            }
-            let err = `The item to append is in another document.`;
-            throw err;
+    resolveItem(item){
+        item = super.resolveItem(item);
+        if(item.document === this.document){
+            item.parent = this.parent;
+            return item;
         }
-        let err = `Type error at arguments[0]`;
+        let err = `The item to append is in another document.`;
         throw err;
     }
 

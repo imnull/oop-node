@@ -55,6 +55,26 @@ class Element extends ElementBase {
     appendChild(node){
         return this.childNodes.append(node);
     }
+
+    removeChild(node){
+        return this.childNodes.remove(node);
+    }
+
+    insertBefore(node, beforeNode){
+        let idx = this.childNodes.indexOf(beforeNode);
+        if(idx > -1){
+            return this.childNodes.insert(idx, node);
+        }
+        let err = `Not contains the node-before`;
+        throw err;
+    }
+
+    query(...args){
+        return this.childNodes.query(...args);
+    }
+    queryAll(...args){
+        return this.childNodes.queryAll(...args);
+    }
 };
 
 module.exports = Element;

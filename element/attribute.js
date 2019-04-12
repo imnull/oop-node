@@ -11,6 +11,21 @@ class Attribute extends NamedNode {
 
     }
 
+    get path(){
+        let n = `/@${this.name}`;
+        if(this.parent && this.parent.type === 1){
+            n = `${this.parent.path}${n}`;
+        }
+        return n;
+    }
+
+    get index(){
+        if(!this.parent){
+            return -1;
+        }
+        return this.parent.childNodes.indexOf(this);
+    }
+
     toString(option){
         let { name, value } = this;
         option = { ...option };

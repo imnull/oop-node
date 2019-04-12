@@ -3,6 +3,21 @@ const NamedNode = require('../node/named-node');
 
 class ElementAbstract extends NamedNode {
 
+    get index(){
+        if(!this.parent){
+            return -1;
+        }
+        return this.parent.childNodes.indexOf(this);
+    }
+
+    get path(){
+        let n = `/${this.name}`;
+        if(this.parent && this.parent.type === 1){
+            n = `${this.parent.path}${n}`;
+        }
+        return n;
+    }
+
     getContentString(option){
         let { name } = this;
         if(invalidValue(name)){

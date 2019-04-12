@@ -13,7 +13,8 @@ class Document extends NamedNode {
         let _option = { ...option, type: 9, name: '#document' };
         super(_option);
 
-        this.root = new Element({ document: this, parent: null, name: 'root', type: 100 })
+        this.root = new Element({ document: this, parent: null, name: 'root', type: 100 });
+        this.root.type = 99;
 
         let { format = false, indent = '  ' } = option;
         this.option = { ...option, format, indent };

@@ -7,17 +7,10 @@ class BaseList {
         this.list = this.cloneList(list);
     }
 
-    /**
-     * 列表长度
-     */
     get length(){
         return this.list.length;
     }
 
-    /**
-     * 添加项目
-     * @param {Object} item 
-     */
     append(item){
         let idx = this.list.indexOf(item);
         if(idx < 0){
@@ -25,6 +18,11 @@ class BaseList {
         } else {
             this.list.push(this.list.splice(idx, 1)[0])
         }
+        return item;
+    }
+
+    insert(index, item){
+        this.list.splice(index, 0, item);
         return item;
     }
 

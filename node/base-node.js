@@ -6,12 +6,12 @@ let ID = 0;
 class BaseNode {
     constructor(option){
         option = { ...option };
-        let { parent, document } = option;
+        let { parent } = option;
         this.id = ++ID;
-        this.parent = parent;
+        this.parent = parent || null;
 
         Object.defineProperties(this, {
-            document: { get: () => option.document }
+            document: { get: () => option.document || null }
         })
     }
 

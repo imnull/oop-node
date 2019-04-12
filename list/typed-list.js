@@ -9,13 +9,20 @@ class TypedList extends BaseList {
         this.T = T;
     }
 
-    append(item){
-        if(item instanceof this.T){
-            return super.append(item);
-        } else {
+    resolveItem(item){
+        if(!(item instanceof this.T)){
             let err = `Type error at arguments[0]`;
             throw err;
         }
+        return item;
+    }
+
+    append(item){
+        return super.append(this.resolveItem(item));
+    }
+
+    insert(index, item){
+        return super.insert(index, this.resolveItem(item));
     }
 
     add(...args){
