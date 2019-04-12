@@ -10,11 +10,14 @@ class NamedNode extends BaseNode {
         this.namespace = namespace;
 
         this.checkNS();
-
     }
 
     checkNS(){
-        let { NSGlobal = null } = this.document || {};
+        if(!this.document){
+            return;
+        }
+        let op = { ...this.document.option };
+        let { NSGlobal = null } = op;
         if(NSGlobal && typeof(NSGlobal) === 'string'){
             if(this.name.indexOf(NSGlobal) === 0 && this.name.length > NSGlobal.length + 1){
                 this.namespace = NSGlobal;
