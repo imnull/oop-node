@@ -9,13 +9,14 @@ const ElementComment = require('./element-comment');
 
 class Document extends NamedNode {
     constructor(option){
-        option = { ...option, type: 9, name: '#document' };
-        super(option);
+        option = { ...option };
+        let _option = { ...option, type: 9, name: '#document' };
+        super(_option);
 
         this.root = new Element({ document: this, parent: null, name: 'root', type: 100 })
 
         let { format = false, indent = '  ' } = option;
-        Object.assign(this, { ...option, format, indent });
+        this.option = { ...option, format, indent };
     }
 
     appendChild(node){
@@ -40,6 +41,7 @@ class Document extends NamedNode {
     }
 
     toString(option){
+        option = { ...this.option, ...option };
         return this.root.childNodes.toString(-1, option);
     }
 
