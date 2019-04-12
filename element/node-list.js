@@ -30,12 +30,12 @@ class NodeList extends TypedList {
     }
 
     toString(depthOffset = 0, option){
-        let { format = false } = this.document || {};
+        option = { ...option };
+        let { format = false } = option;
         let joiner = '';
         if(format){
             joiner = '\n';
         }
-        option = { ...option };
         return this.list.map(item => {
             return item.toString(depthOffset, option);
         }).join(joiner);

@@ -12,9 +12,9 @@ class ElementAbstract extends NamedNode {
         return name;
     }
 
-    getFormatPrefix(depthOffset = 0){
-        let { document } = this;
-        let { indent = '  ', format = false } = document;
+    getFormatPrefix(depthOffset = 0, option){
+        option = { ...option }
+        let { indent = '  ', format = false } = option;
         if(format){
             return indent.repeat(this.depth + depthOffset);
         } else {
@@ -27,7 +27,7 @@ class ElementAbstract extends NamedNode {
         if(!content){
             return '';
         }
-        return `${this.getFormatPrefix(depthOffset)}<${content}/>`;
+        return `${this.getFormatPrefix(depthOffset, option)}<${content} />`;
     }
 }
 

@@ -18,14 +18,18 @@ class Element extends ElementBase {
 
     toString(depthOffset = 0, option){
         option = { ...option };
+        let { elementAlone = false, format = false } = option;
+        let { name } = this;
+        let tag = this.getContentString(option);
+        let prefix = this.getFormatPrefix(depthOffset, option);
         if(this.childNodes.length < 1){
-            return super.toString(depthOffset, option);
+            if(elementAlone){
+                return super.toString(depthOffset, option);
+            } else {
+                return `${prefix}<${tag}></${name}>`;
+            }
         } else {
-            let { format = false } = this.document || {};
-            let { name } = this;
-            let tag = this.getContentString(option);
-            let prefix = this.getFormatPrefix(depthOffset);
-            let children = this.childNodes.toString(depthOffset);
+            let children = this.childNodes.toString(depthOffset, option);
             if(format){
                 return `${prefix}<${tag}>\n${children}\n${prefix}</${name}>`
             } else {

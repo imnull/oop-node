@@ -9,11 +9,11 @@ class ElementText extends ElementAbstract {
         this.value = value;
     }
 
-    toString(depthOffset = 0){
+    toString(depthOffset = 0, option){
         if(invalidValue(this.value)){
             return '';
         }
-        return `${this.getFormatPrefix(depthOffset)}${this.value}`;
+        return `${this.getFormatPrefix(depthOffset, option)}${this.value}`;
     }
 }
 
