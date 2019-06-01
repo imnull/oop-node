@@ -17,12 +17,13 @@ class NamedNode extends BaseNode {
             return;
         }
         let op = { ...this.document.option };
-        let { NSGlobal = null } = op;
-        if(NSGlobal && typeof(NSGlobal) === 'string'){
-            if(this.name.indexOf(NSGlobal) === 0 && this.name.length > NSGlobal.length + 1){
+        let { NSGlobal = null, NSSpliter = null } = op;
+        if(NSGlobal && NSSpliter && typeof(NSGlobal) === 'string' && typeof(NSSpliter) === 'string'){
+            let ns = `${NSGlobal}${NSSpliter}`;
+            if(this.name.length > ns.length + 1 && this.name.indexOf(ns) === 0){
                 this.namespace = NSGlobal;
-                this.namespaceSpliter = this.name.charAt(NSGlobal.length);
-                this.name = this.name.substr(NSGlobal.length + 1);
+                this.namespaceSpliter = NSSpliter;
+                this.name = this.name.substr(ns.length);
             }
         }
     }

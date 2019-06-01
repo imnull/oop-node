@@ -53,16 +53,25 @@ class Element extends ElementBase {
     }
 
     appendChild(node){
+        if(node.parent){
+            node.parent.removeChild(node);
+        }
+        node.parent = this;
         return this.childNodes.append(node);
     }
 
     removeChild(node){
+        node.parent = null;
         return this.childNodes.remove(node);
     }
 
     insertBefore(node, beforeNode){
+        if(node.parent){
+            node.parent.remove(node);
+        }
         let idx = this.childNodes.indexOf(beforeNode);
         if(idx > -1){
+            node.parent = this;
             return this.childNodes.insert(idx, node);
         }
         let err = `Not contains the node-before`;
