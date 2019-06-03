@@ -27,14 +27,31 @@ class NodeList extends TypedList {
 
     toString(depthOffset = 0, option){
         option = { ...option };
-        let { format = false } = option;
+        let { format = false, formatIgnore = [] } = option;
         let joiner = '';
         if(format){
             joiner = '\n';
-        }
-        return this.list.map(item => {
-            return item.toString(depthOffset, option);
-        }).join(joiner);
+        };
+        let s = '';
+        let lastFormat = true;
+        this.list.forEach(item => {
+            let str = item.toString(depthOffset, option);
+            if(format && !~formatIgnore.indexOf(item.type)){
+                if(!lastFormat){
+                    // s += '\n';
+                    // s = s.replace(/[\r\n]+$/g, '');
+                    str = str.replace(/^\s+/, '');
+                }
+                lastFormat = true;
+                str += '\n';
+            } else {
+                lastFormat = false;
+                s = s.replace(/[\r\n]+$/g, '');
+            }
+            s += str;
+            
+        });
+        return s;
     }
 
     query(fn){
