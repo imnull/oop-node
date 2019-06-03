@@ -23,6 +23,7 @@ console.log(doc.toString({
     NSGlobal: 's',
     NSSpliter: '-',
     // elementAlone: true,
+    formatText: false,
 }));
 
 console.log(doc.query(n => n.name === 'h1').query(n => n.name === '#text').path)

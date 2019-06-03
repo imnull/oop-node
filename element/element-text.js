@@ -13,7 +13,12 @@ class ElementText extends ElementAbstract {
         if(invalidValue(this.value)){
             return '';
         }
-        return `${this.getFormatPrefix(depthOffset, option)}${this.value}`;
+        let { formatText = true } = option;
+        if(formatText){
+            return `${this.getFormatPrefix(depthOffset, option)}${this.value}`;
+        } else {
+            return this.value;
+        }
     }
 }
 
