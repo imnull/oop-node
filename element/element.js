@@ -18,12 +18,12 @@ class Element extends ElementBase {
 
     toString(depthOffset = 0, option){
         option = { ...option };
-        let { elementAlone = false, format = false, formatText = true } = option;
+        let { elementAlone = false, format = false, formatIgnore = [], aloneElements = [] } = option;
         let { name } = this;
         let tag = this.getContentString(option);
         let prefix = this.getFormatPrefix(depthOffset, option);
         if(this.childNodes.length < 1){
-            if(elementAlone){
+            if(elementAlone || !!~aloneElements.indexOf(name)){
                 return super.toString(depthOffset, option);
             } else {
                 return `${prefix}<${tag}></${name}>`;
@@ -32,10 +32,10 @@ class Element extends ElementBase {
             let children = this.childNodes.toString(depthOffset, option);
             let firstLineBreak = '\n';
             let lastLineBreak = `\n${prefix}`;
-            if(this.childNodes.list[0].type === 3 && !formatText){
+            if(!!~formatIgnore.indexOf(this.childNodes.list[0].type)){
                 firstLineBreak = '';
             }
-            if(this.childNodes.list[this.childNodes.list.length - 1].type === 3 && !formatText){
+            if(!!~formatIgnore.indexOf(this.childNodes.list[this.childNodes.list.length - 1].type)){
                 lastLineBreak = '';
             }
             if(format){

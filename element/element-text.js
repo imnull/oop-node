@@ -13,8 +13,8 @@ class ElementText extends ElementAbstract {
         if(invalidValue(this.value)){
             return '';
         }
-        let { formatText = true } = option;
-        if(formatText){
+        let { formatIgnore = [] } = option;
+        if(!~formatIgnore.indexOf(this.type)){
             return `${this.getFormatPrefix(depthOffset, option)}${this.value}`;
         } else {
             return this.value;

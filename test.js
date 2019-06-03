@@ -15,15 +15,21 @@ div.appendChild(h1).appendChild(doc.createText('Hello~'));
 div.appendChild(doc.createText('Marvin'));
 div.appendChild(doc.createElement('image')).setAttribute('src', 'http://asdfsadfsa.asfdfa.com');
 div.appendChild(doc.createComment('User Name End'));
-div.insertBefore(doc.createElement('yiya'), h1).appendChild(doc.createText('yiyayiya~'))
+div.insertBefore(doc.createElement('yiya'), h1).appendChild(doc.createText(' yiya\nyiya~ '));
+let input = doc.createElement('input');
+let t = doc.createText('inputing');
+div.appendChild(input).appendChild(t);
+input.removeChild(t)
+
 
 doc.appendChild(doc.createText('abcdefghijklmn~~~...!!!'));
 // // console.log(div.toString());
 console.log(doc.toString({
     NSGlobal: 's',
     NSSpliter: '-',
-    // elementAlone: true,
-    formatText: false,
+    elementAlone: false,
+    formatIgnore: [3],
+    aloneElements: ['input', 'image'],
 }));
 
 console.log(doc.query(n => n.name === 'h1').query(n => n.name === '#text').path)
