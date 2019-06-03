@@ -40,10 +40,11 @@ class NodeList extends TypedList {
                 if(!lastFormat){
                     // s += '\n';
                     // s = s.replace(/[\r\n]+$/g, '');
-                    str = str.replace(/^\s+/, '');
+                    str = str.replace(/^\s+|[\r\n]+$/g, '');
+                } else {
                 }
-                lastFormat = true;
                 str += '\n';
+                lastFormat = true;
             } else {
                 lastFormat = false;
                 s = s.replace(/[\r\n]+$/g, '');

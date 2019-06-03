@@ -17,6 +17,8 @@ div.appendChild(doc.createText(' OOP'));
 div.appendChild(doc.createText(' NO-WRAP '));
 div.appendChild(doc.createElement('image')).setAttribute('src', 'http://asdfsadfsa.asfdfa.com');
 div.appendChild(doc.createComment('User Name End'));
+div.appendChild(doc.createElement('aaaa')).appendChild(doc.createElement('bbbb')).appendChild(doc.createElement('ccc')).appendChild(doc.createText(' - dddd - '));
+
 div.insertBefore(doc.createElement('yiya'), h1).appendChild(doc.createText(' yiya\nyiya~ '));
 let input = doc.createElement('input');
 let t = doc.createText('inputing');

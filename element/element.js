@@ -31,7 +31,7 @@ class Element extends ElementBase {
         } else {
             let children = this.childNodes.toString(depthOffset, option);
             let firstLineBreak = '\n';
-            let lastLineBreak = `\n${prefix}`;
+            let lastLineBreak = `${prefix}`;
             if(!!~formatIgnore.indexOf(this.childNodes.list[0].type)){
                 firstLineBreak = '';
             }
