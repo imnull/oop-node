@@ -36,4 +36,9 @@ console.log(doc.toString({
     aloneElements: ['input', 'image'],
 }));
 
-console.log(doc.query(n => n.name === 'h1').query(n => n.name === '#text').path)
+console.log(doc.query(n => n.name === 'h1').query(n => n.name === '#text').path);
+
+while(h1){
+    console.log(1111111, h1.name)
+    h1 = h1.previousSibling();
+}

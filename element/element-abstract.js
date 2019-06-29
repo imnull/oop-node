@@ -44,6 +44,22 @@ class ElementAbstract extends NamedNode {
         }
         return `${this.getFormatPrefix(depthOffset, option)}<${content} />`;
     }
+
+    nextSibling(){
+        if(!this.parent){
+            return null;
+        }
+        let idx = this.parent.childNodes.list.indexOf(this);
+        return this.parent.childNodes.list[idx + 1] || null;
+    }
+
+    previousSibling(){
+        if(!this.parent){
+            return null;
+        }
+        let idx = this.parent.childNodes.list.indexOf(this);
+        return this.parent.childNodes.list[idx - 1] || null;
+    }
 }
 
 module.exports = ElementAbstract;
