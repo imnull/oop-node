@@ -75,7 +75,7 @@ class Element extends ElementBase {
 
     insertBefore(node, beforeNode){
         if(node.parent){
-            node.parent.remove(node);
+            node.parent.removeChild(node);
         }
         let idx = this.childNodes.indexOf(beforeNode);
         if(idx > -1){
