@@ -13,7 +13,8 @@ class NodeList extends TypedList {
 
     resolveItem(item){
         item = super.resolveItem(item);
-        if(item.document === this.document){
+        if(!item.document || item.document === this.document){
+            item.document = this.document;
             item.parent = this.parent;
             return item;
         }

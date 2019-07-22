@@ -11,7 +11,15 @@ class BaseNode {
         this.parent = parent || null;
 
         Object.defineProperties(this, {
-            document: { get: () => option.document || null }
+            document: {
+                get: () => option.document || null,
+                set: (doc) => {
+                    if(!option.document){
+                        option.document = doc;
+                    }
+                    return option.document;
+                }
+            }
         })
     }
 
