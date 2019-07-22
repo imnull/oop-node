@@ -1,6 +1,6 @@
 {
   "name": "oop-node",
-  "version": "1.4.13",
+  "version": "1.5.0",
   "description": "An element-struct based OOP",
   "main": "index",
   "scripts": {
