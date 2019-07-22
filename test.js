@@ -31,7 +31,7 @@ doc.appendChild(doc.createText('abcdefghijklmn~~~...!!!'));
 console.log(doc.toString({
     NSGlobal: 's',
     NSSpliter: '-',
-    NSAttributs: ['if', 'else', 'elif', 'for', 'key', 'for-index', 'for-item'],
+    NSAttributes: ['if', 'else', 'elif', 'for', 'key', 'for-index', 'for-item'],
     elementAlone: false,
     formatIgnore: [3],
     aloneElements: ['input', 'image'],
@@ -44,7 +44,7 @@ testNode.setAttribute('for-index', 'idx');
 console.log(testNode.toString(0, {
     NSGlobal: 's',
     NSSpliter: '-',
-    NSAttributs: ['if', 'else', 'elif', 'for', 'key', 'for-index', 'for-item']
+    NSAttributes: ['if', 'else', 'elif', 'for', 'key', 'for-index', 'for-item']
 }))
 
 console.log(doc.query(n => n.name === 'h1').query(n => n.name === '#text').path);
