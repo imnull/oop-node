@@ -42,7 +42,8 @@ class ElementAbstract extends NamedNode {
         if(!content){
             return '';
         }
-        return `${this.getFormatPrefix(depthOffset, option)}<${content} />`;
+        const spliter = option.format ? ' ' : '';
+        return `${this.getFormatPrefix(depthOffset, option)}<${content}${spliter}/>`;
     }
 
     nextSibling(){

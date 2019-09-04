@@ -8,7 +8,6 @@ class Attribute extends NamedNode {
         let { value, type = 2 } = option;
         this.value = value;
         this.type = type;
-
     }
 
     get path(){

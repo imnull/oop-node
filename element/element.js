@@ -1,6 +1,6 @@
-const ElementBase = require('./element-base');
-const ElementAbstract = require('./element-abstract');
-const NodeList = require('./node-list');
+const ElementBase = require('oop-node/element/element-base');
+const ElementAbstract = require('oop-node/element/element-abstract');
+const NodeList = require('oop-node/element/node-list');
 
 class Element extends ElementBase {
     constructor(option = {}){
@@ -23,7 +23,7 @@ class Element extends ElementBase {
         let tag = this.getContentString(option);
         let prefix = this.getFormatPrefix(depthOffset, option);
         if(this.childNodes.length < 1){
-            if(elementAlone || !!~aloneElements.indexOf(name)){
+            if(this.alone || elementAlone || !!~aloneElements.indexOf(name)){
                 return super.toString(depthOffset, option);
             } else {
                 return `${prefix}<${tag}></${name}>`;

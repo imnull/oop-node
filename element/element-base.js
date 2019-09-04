@@ -32,8 +32,9 @@ class ElementBase extends ElementAbstract {
 
     getContentString(option){
         let name = super.getContentString(option);
+        let attrSpliter = option.format ? ' ' : '';
         if(this.attributes.length > 0){
-            name = `${name} ${this.attributes.toString(option)}`;
+            name = `${name}${attrSpliter}${this.attributes.toString(option)}`;
         }
         return name;
     }
