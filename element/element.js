@@ -1,6 +1,6 @@
-const ElementBase = require('oop-node/element/element-base');
-const ElementAbstract = require('oop-node/element/element-abstract');
-const NodeList = require('oop-node/element/node-list');
+const ElementBase = require('./element-base');
+const ElementAbstract = require('./element-abstract');
+const NodeList = require('./node-list');
 
 class Element extends ElementBase {
     constructor(option = {}){

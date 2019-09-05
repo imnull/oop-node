@@ -1,4 +1,4 @@
-let ID = 0;
+const { newId } = require('./id-getter');
 
 /**
  * 节点基类抽象
@@ -7,7 +7,7 @@ class BaseNode {
     constructor(option){
         option = { ...option };
         let { parent } = option;
-        this.id = ++ID;
+        this.id = newId();
         this.parent = parent || null;
 
         Object.defineProperties(this, {
