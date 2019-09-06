@@ -36,6 +36,19 @@ class AttributeList extends NodeList {
         this.list.push(new AttributeSpliter({ value }));
         // return super.append(new AttributeSpliter({ value }))
     }
+
+    removeAt(index){
+        const r = super.removeAt(index);
+        while(index > 0){
+            index -= 1;
+            if(this.list[index] instanceof AttributeSpliter){
+                super.removeAt(index);
+            } else {
+                return r;
+            }
+        }
+        return r;
+    }
 };
 
 module.exports = AttributeList;

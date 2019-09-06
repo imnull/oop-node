@@ -30,6 +30,11 @@ class ElementBase extends ElementAbstract {
         return a ? a.value : null;
     }
 
+    removeAttribute(name){
+        let a = this.attributes.findByName(name);
+        return this.attributes.remove(a);
+    }
+
     getContentString(option){
         let name = super.getContentString(option);
         let attrSpliter = option.format ? ' ' : '';
