@@ -1,5 +1,6 @@
 const ElementAbstract = require('./element-abstract');
 const AttributeList = require('./attribute-list');
+const AttributeSpliter = require('./attribute-spliter');
 
 class ElementBase extends ElementAbstract {
     constructor(option){
@@ -20,6 +21,13 @@ class ElementBase extends ElementAbstract {
         if(a){
             a.value = value;
         } else {
+            // let spliter = new AttributeSpliter({
+            //     document: this.document,
+            //     parent: this.parent,
+            //     name: '',
+            //     value: ' '
+            // });
+            // this.attributes.append(spliter);
             this.attributes.add(name, value);
         }
         return this;

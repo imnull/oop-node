@@ -1,16 +1,6 @@
 const NodeList = require('./node-list');
 const Attribute = require('./attribute');
-
-class AttributeSpliter extends Attribute {
-    constructor(option = {}){
-        super(option);
-        this.name = NaN;
-    }
-    toString(option){
-        const { format = false } = option;
-        return format ? '' : this.value;
-    }
-}
+const AttributeSpliter = require('./attribute-spliter');
 
 class AttributeList extends NodeList {
     constructor(option){ super({ ...option, T: Attribute }) }
@@ -20,6 +10,19 @@ class AttributeList extends NodeList {
             return '';
         }
         const joiner = option.format ? ' ' : '';
+        let tplItem = null, arr = [];
+        this.list.forEach(item => {
+            if(arr.length > 0){
+                arr.push(joiner);
+                if((item instanceof Attribute && !(item instanceof AttributeSpliter)) && !(tplItem instanceof AttributeSpliter) && !joiner){
+                    arr.push(' ');
+                }
+            }
+            arr.push(item.toString(option));
+            tplItem = item;
+        });
+        let str = arr.join('')//.replace(/^\s+|\s+$/g, '')
+        return str
         return this.list.map(item => item.toString(option)).join(joiner);
     }
 

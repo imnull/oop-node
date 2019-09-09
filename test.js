@@ -53,3 +53,4 @@ while(h1){
     console.log(1111111, h1.name)
     h1 = h1.previousSibling();
 }
+
