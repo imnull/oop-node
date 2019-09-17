@@ -26,12 +26,16 @@ class Attribute extends NamedNode {
     }
 
     toString(option){
-        let { name, value } = this;
+        let { name, value, quote = '"' } = this;
         option = { ...option };
         if(!invalidValue(name)){
             name = resolveNS(this, option);
             if(!invalidValue(value)){
-                return `${name}=${JSON.stringify(value)}`;
+                if(quote === '"'){
+                    return `${name}=${JSON.stringify(value)}`;
+                } else {
+                    return `${name}=${quote}${value}${quote}`;
+                }
             } else {
                 return name;
             }
